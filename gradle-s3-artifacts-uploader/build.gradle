@@ -1,0 +1,43 @@
+plugins {
+    id 'groovy'
+    id 'java'
+    id 'maven-publish'
+}
+
+group 'com.pb.spectrum.spatial.cicd'
+version '0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+        url "s3://com.pb.ajeet/maven2"
+        credentials(AwsCredentials) {
+            accessKey "AKI*****************************JNA"
+            secretKey "ak4**************************************NXB4"
+        }
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            url "s3://com.pb.ajeet/maven2"
+            credentials(AwsCredentials) {
+                accessKey "AKI*****************************JNA"
+                secretKey "ak4**************************************NXB4"
+            }
+        }
+    }
+
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.pb.spectrum.spatial.cicd'
+            artifactId = 'gradle-s3'
+            version = '0-SNAPSHOT'
+            from components.java
+        }
+    }
+}

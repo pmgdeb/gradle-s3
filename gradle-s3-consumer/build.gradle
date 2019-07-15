@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'idea'
+}
+
+group 'com.pb.spectrum.spatial.cicd'
+version '0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+        url "s3://com.pb.ajeet/maven2"
+        credentials(AwsCredentials) {
+            accessKey "AKI*****************************JNA"
+            secretKey "ak4**************************************NXB4"
+        }
+    }
+}
+
+dependencies {
+    compile 'com.pb.spectrum.spatial.cicd:gradle-s3:0-SNAPSHOT'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
